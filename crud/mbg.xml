@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+ <!--  <classPathEntry location="/Program Files/IBM/SQLLIB/java/db2java.zip" />/-->
+  <context id="DB2Tables" targetRuntime="MyBatis3">
+ <!-- 禁止生成任何注释 -->
+    <commentGenerator>
+  		<property name ="suppressAllComments" value ="true"/>
+	</commentGenerator>
+    
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+        connectionURL="jdbc:mysql:///ssm_crud"
+        userId="root"
+        password="root">
+    </jdbcConnection>
+
+    <javaTypeResolver >
+      <property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>
+
+<!-- 指定JavaBean生成的位置 -->
+    <javaModelGenerator 
+    targetPackage="com.ssm.crud.bean" 
+    targetProject=".\src\main\java">
+      <property name="enableSubPackages" value="true" />
+      <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+<!-- 指定SQL映射文件生成的位置 -->
+    <sqlMapGenerator 
+    targetPackage="mapper"  
+    targetProject=".\src\main\resources">
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+<!-- 指定dao接口文件生成的位置 -->
+    <javaClientGenerator type="XMLMAPPER" 
+    targetPackage="com.ssm.crud.dao"  
+    targetProject=".\src\main\java">
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+<!-- 指定每个表table的生成策略 -->
+    <!-- <table schema="DB2ADMIN" tableName="ALLTYPES" domainObjectName="Customer" >
+      <property name="useActualColumnNames" value="true"/>
+      <generatedKey column="ID" sqlStatement="DB2" identity="true" />
+      <columnOverride column="DATE_FIELD" property="startDate" />
+      <ignoreColumn column="FRED" />
+      <columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+    </table> -->
+    <table tableName="tbl_emp" domainObjectName="Employee"></table>
+    <table tableName="tbl_dept" domainObjectName="Department"></table>
+
+  </context>
+</generatorConfiguration>
